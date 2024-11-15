@@ -1,1 +1,13 @@
 node_modules/
+# Ignore all .log files
+*.log
+
+# Ignore specific directories
+node_modules/
+dist/
+
+# Ignore environment files
+.env
+
+# Ignore all files ending with .tmp
+*.tmp
