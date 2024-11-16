@@ -1,21 +1,21 @@
+//core modules
 const express = require('express');
 const bodyParser = require('body-parser');
+
+//my module custom
+const adminRoute = require('./routes/admin');
+const shopRoute = require('./routes/shop');
+
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use('/add-product',(req,res,next)=>{
-    console.log("in the middleware");
-    res.send(`<form action='/product' method='POST'>title<input type='text' name='title'></inpt>size<input type='text' name='size'></inpt><button type='submit'>add</button>`);
+app.use('/admin',adminRoute); 
 
-});
-app.post('/product',(req,res,next)=>{
-    console.log(req.body);
-    res.redirect('/');
+app.use(shopRoute);
+
+app.use((req,res,next)=>{
+    res.status(404).send(`<h1>page not found</h1>`);
 })
-
-app.use('/',(req,res,next)=>{
-    res.send(`<h1>home page</h1>`);
-});
 
 app.listen(4000);
