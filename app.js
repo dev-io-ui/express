@@ -8,7 +8,7 @@ const path = require('path');
 const adminRoute = require('./routes/admin');
 const shopRoute = require('./routes/shop');
 const contactusRoute = require('./routes/contact-us');
-
+const errorController = require('./controller/error')
 
 const app = express();
 
@@ -20,8 +20,6 @@ app.use('/admin',adminRoute);
 app.use(shopRoute);
 app.use(contactusRoute);
 
-app.use((req,res,next)=>{
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
-})
+app.use(errorController.get404);
 
 app.listen(4000);
