@@ -1,16 +1,16 @@
 const express = require('express');
-
+const path = require('path');
+const rootDir = require('../util/path');
 const routes = express.Router();
 
 // /admin/add-product
 routes.get('/add-product',(req,res,next)=>{
-    console.log("in the middleware");
-    res.send(`<form action='/admin/add-product' method='POST'>title<input type='text' name='title'></inpt>size<input type='text' name='size'></inpt><button type='submit'>add</button>`);
-
+   
+    res.sendFile(path.join(rootDir,'views','add-product.html'));
 });
 // /admin/add-product
 routes.post('/add-product',(req,res,next)=>{
-    console.log(req.body);
+    
     res.redirect('/');
 });
 
